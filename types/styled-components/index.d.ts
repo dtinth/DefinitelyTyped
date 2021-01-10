@@ -57,14 +57,16 @@ type Defaultize<P, D> = P extends any
 
 type ReactDefaultizedProps<C, P> = C extends { defaultProps: infer D } ? Defaultize<P, D> : P;
 
+/**
+ * @template C The Component from whose props are derived
+ * @template T The Theme from the current context
+ * @template O The other props added by the template
+ * @template A The props that are made optional by .attrs
+ */
 export type StyledComponentProps<
-    // The Component from whose props are derived
     C extends string | React.ComponentType<any>,
-    // The Theme from the current context
     T extends object,
-    // The other props added by the template
     O extends object,
-    // The props that are made optional by .attrs
     A extends keyof any
 > =
     // Distribute O if O is a union type
